@@ -1,6 +1,8 @@
 (function () {
   var imagePaths = Array.isArray(window.__approvedImages) ? window.__approvedImages.slice() : [];
   if (!imagePaths.length) return;
+  var reviewObserver = null;
+  var activeReviewSelection = null;
 
   if (Array.isArray(window.__heroSlides)) {
     var heroPath = imagePaths.find(function (path) {
@@ -25,11 +27,7 @@
     '.approved-gallery-card--more strong{font-size:1.7rem;line-height:1;color:#E8620A}',
     '.approved-gallery-card--more span{font-size:.72rem;color:rgba(255,255,255,.52);text-transform:uppercase;letter-spacing:.08em}',
     '.approved-gallery-card--more em{font-size:.78rem;font-style:normal;font-weight:700;color:#fff;border-bottom:1px solid rgba(232,98,10,.55);padding-bottom:2px}',
-      '.review-extra{display:none}.review-extra.is-visible{display:block}',
-      '#reviews-toggle{display:flex;align-items:center;justify-content:center;gap:10px;margin:28px auto 0;padding:11px 20px;border:1px solid rgba(232,98,10,.25);border-radius:999px;background:#fff;color:#E8620A;font:700 .86rem Inter,sans-serif;cursor:pointer;transition:all .2s}',
-      '#reviews-toggle:hover{background:#FFF7F1;border-color:#E8620A;transform:translateY(-1px)}',
-      '#reviews-toggle .review-arrow{font-size:1.05rem;line-height:1;transition:transform .2s}',
-      '#reviews-toggle.is-open .review-arrow{transform:rotate(180deg)}',
+      '.review-extra{display:none}',
       '@media(max-width:560px){.approved-gallery-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.approved-gallery-grid--full{grid-template-columns:repeat(2,minmax(0,1fr))}}'
     ].join('');
     document.head.appendChild(style);
@@ -118,6 +116,32 @@
     return true;
   }
 
+  function shuffledReviewSelection(total) {
+    var previous = [];
+    try {
+      previous = JSON.parse(window.localStorage.getItem('reviewSelection') || '[]');
+    } catch (e) {}
+    if (!Array.isArray(previous)) previous = [];
+
+    function selectionSignature(values) {
+      return values.slice().sort(function (a, b) { return a - b; }).join('|');
+    }
+
+    var indexes = [];
+    for (var i = 0; i < total; i++) indexes.push(i);
+
+    var selected = [];
+    for (var attempt = 0; attempt < 8; attempt++) {
+      selected = shuffle(indexes.slice()).slice(0, Math.min(6, total));
+      if (selectionSignature(selected) !== selectionSignature(previous) || total <= 6) break;
+    }
+
+    try {
+      window.localStorage.setItem('reviewSelection', JSON.stringify(selected));
+    } catch (e) {}
+    return selected;
+  }
+
   function setupReviews() {
     var section = document.getElementById('avaliacoes');
     if (!section) return false;
@@ -125,23 +149,25 @@
     if (!cards.length) return false;
     if (cards.length <= 6) return false;
 
-    cards.slice(6).forEach(function (card) {
-      card.classList.add('review-extra');
+    if (!activeReviewSelection) activeReviewSelection = shuffledReviewSelection(cards.length);
+    cards.forEach(function (card, index) {
+      var isSelected = activeReviewSelection.indexOf(index) !== -1;
+      card.classList.toggle('review-extra', !isSelected);
+      card.classList.remove('is-visible');
     });
 
+    if (!reviewObserver && window.MutationObserver) {
+      var observedRoot = document.getElementById('dc-root') || document.body;
+      if (observedRoot) {
+        reviewObserver = new MutationObserver(function () {
+          setupReviews();
+        });
+        reviewObserver.observe(observedRoot, { childList: true, subtree: true });
+      }
+    }
+
     var button = section.querySelector('#reviews-toggle');
-    if (!button) return false;
-    if (button.getAttribute('data-review-toggle-bound') === 'true') return true;
-    button.setAttribute('data-review-toggle-bound', 'true');
-    button.addEventListener('click', function () {
-      var isOpen = button.classList.toggle('is-open');
-      button.setAttribute('aria-expanded', String(isOpen));
-      cards.slice(6).forEach(function (card) {
-        card.classList.toggle('is-visible', isOpen);
-      });
-      button.innerHTML = (isOpen ? 'Mostrar menos avaliações ' : 'Mostrar mais avaliações ') +
-        '<span class="review-arrow" aria-hidden="true">⌄</span>';
-    });
+    if (button) button.remove();
     return true;
   }
 
