@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin=""/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet"/>
+<script src="slides-data.js"></script>
+<script src="./image-slot.js"></script>
+<script src="./gallery-images.js?v=20260822-2"></script>
+<script src="./approved-gallery.js?v=20260822-2"></script>
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:#F9F8F6;color:#1A1A2E;line-height:1.6;overflow-x:hidden}
+a{color:#E8620A;text-decoration:none}
+a:hover{color:#FF7A20}
+@keyframes pr{0%{transform:scale(.9);opacity:.6}70%{transform:scale(1.18);opacity:0}100%{transform:scale(1.18);opacity:0}}
+</style>
+</helmet>
+
+<!-- Botões flutuantes -->
+<div id="floatWa" style="display:none;position:fixed;bottom:20px;right:20px;flex-direction:column;gap:12px;z-index:200">
+<a href="https://instagram.com/rhfgrafael" target="_blank" rel="noopener" aria-label="Instagram" style="display:flex;width:52px;height:52px;background:linear-gradient(45deg,#F58529,#DD2A7B,#8134AF);border-radius:50%;align-items:center;justify-content:center;box-shadow:0 4px 18px rgba(221,42,123,.42);transition:transform .18s" style-hover="transform:scale(1.1)">
+  <svg viewBox="0 0 24 24" style="width:26px;height:26px;fill:#fff"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.42-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16zM12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63c-.79.3-1.46.72-2.12 1.39C1.35 2.68.93 3.35.63 4.14.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.3.79.72 1.46 1.39 2.12.66.67 1.33 1.09 2.12 1.39.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56.79-.3 1.46-.72 2.12-1.39.67-.66 1.09-1.33 1.39-2.12.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91-.3-.79-.72-1.46-1.39-2.12C21.32 1.35 20.65.93 19.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 100 12.32 6.16 6.16 0 000-12.32zM12 16a4 4 0 110-8 4 4 0 010 8zm7.85-10.4a1.44 1.44 0 11-2.88 0 1.44 1.44 0 012.88 0z"/></svg>
+</a>
+<a href="https://wa.me/5531987324394?text=Ol%C3%A1%20Rafael%2C%20vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20as%20aulas!" target="_blank" rel="noopener" aria-label="WhatsApp" style="display:flex;width:56px;height:56px;background:#25D366;border-radius:50%;align-items:center;justify-content:center;box-shadow:0 4px 20px rgba(37,211,102,.5);transition:transform .18s" style-hover="transform:scale(1.1)">
+  <svg viewBox="0 0 24 24" style="width:28px;height:28px;fill:#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+
+</div>
+
+<!-- NAV -->
+<nav style="position:sticky;top:0;z-index:100;background:#141420;padding:14px 0;box-shadow:0 2px 16px rgba(0,0,0,.15)">
+  <div style="max-width:1120px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;gap:16px">
+    <div style="font-weight:900;font-size:1.15rem;color:#fff;letter-spacing:-.01em">Rafael <span style="color:#E8620A">Giovannini</span></div>
+    <div style="display:flex;align-items:center;gap:10px">
+    <a href="Aprovados.dc.html" style="display:flex;align-items:center;color:rgba(255,255,255,.6);font-weight:600;font-size:.88rem;text-decoration:none;padding:9px 10px;transition:color .2s;white-space:nowrap" style-hover="color:#FF7A20">Aprovados</a>
+    <a href="https://instagram.com/rhfgrafael" target="_blank" rel="noopener" aria-label="Instagram" style="display:flex;align-items:center;gap:8px;color:#fff;font-weight:700;font-size:.88rem;padding:9px 16px 9px 12px;border-radius:999px;border:1px solid rgba(255,255,255,.16);white-space:nowrap;text-decoration:none;transition:all .2s" style-hover="border-color:transparent;background:linear-gradient(45deg,#F58529,#DD2A7B,#8134AF);color:#fff">
+      <svg viewBox="0 0 24 24" style="width:17px;height:17px;fill:currentColor;flex-shrink:0"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.42-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16zM12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63c-.79.3-1.46.72-2.12 1.39C1.35 2.68.93 3.35.63 4.14.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.3.79.72 1.46 1.39 2.12.66.67 1.33 1.09 2.12 1.39.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56.79-.3 1.46-.72 2.12-1.39.67-.66 1.09-1.33 1.39-2.12.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91-.3-.79-.72-1.46-1.39-2.12C21.32 1.35 20.65.93 19.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 100 12.32 6.16 6.16 0 000-12.32zM12 16a4 4 0 110-8 4 4 0 010 8zm7.85-10.4a1.44 1.44 0 11-2.88 0 1.44 1.44 0 012.88 0z"/></svg>@rhfgrafael
+    </a>
+    <a href="https://wa.me/5531987324394?text=Ol%C3%A1%20Rafael%2C%20vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20as%20aulas!" target="_blank" rel="noopener" style="display:flex;align-items:center;gap:10px;background:#25D366;color:#fff;font-weight:700;font-size:.9rem;padding:10px 20px;border-radius:999px;white-space:nowrap;text-decoration:none;transition:background .2s,transform .15s" style-hover="background:#1DAA54;transform:scale(1.03)">
+      <svg viewBox="0 0 24 24" style="width:18px;height:18px;fill:#fff;flex-shrink:0"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>Agendar aula
+    </a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="home" style="position:relative;overflow:hidden;min-height:620px;display:flex;flex-direction:column;justify-content:flex-end">
+  <div id="hSlides" style="position:absolute;inset:0;z-index:0"></div>
+  <div style="position:absolute;inset:0;z-index:1;background:linear-gradient(to right,rgba(20,20,32,.96) 0%,rgba(20,20,32,.9) 26%,rgba(20,20,32,.58) 48%,rgba(20,20,32,.16) 68%,transparent 86%),linear-gradient(to top,rgba(20,20,32,.72) 0%,rgba(20,20,32,.18) 24%,transparent 48%)"></div>
+  <sc-if value="{{ showRoadStripe }}" hint-placeholder-val="{{ true }}">
+    <div style="position:absolute;bottom:0;left:0;right:0;height:4px;z-index:4;background:repeating-linear-gradient(90deg,#E8620A 0,#E8620A 40px,transparent 40px,transparent 70px)"></div>
+  </sc-if>
+  <div style="position:relative;z-index:2;max-width:1120px;margin:0 auto;padding:88px 24px 64px;width:100%">
+    <div style="max-width:560px">
+      <div style="display:inline-flex;align-items:center;gap:8px;background:rgba(232,98,10,.14);border:1px solid rgba(232,98,10,.3);border-radius:999px;padding:6px 16px;font-size:.78rem;font-weight:600;color:#FF7A20;letter-spacing:.07em;text-transform:uppercase;margin-bottom:22px">
+        <svg viewBox="0 0 24 24" style="width:13px;height:13px;fill:#FF7A20"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+        BH e Região
+      </div>
+      <h1 style="font-size:clamp(2.4rem,6vw,4.2rem);font-weight:900;color:#fff;line-height:1.05;margin-bottom:8px;letter-spacing:-.01em">Rafael<br/><span style="color:#E8620A">Giovannini</span></h1>
+      <p style="font-size:.88rem;color:rgba(255,255,255,.42);font-weight:600;letter-spacing:.16em;text-transform:uppercase;margin-bottom:18px">Instrutor de Trânsito</p>
+      <p style="font-size:1.1rem;color:rgba(255,255,255,.75);margin-bottom:34px;line-height:1.55"><em style="color:#FF7A20;font-weight:600">Dirija com mais confiança.</em><br/>Aulas personalizadas, no seu ritmo, onde você precisar.</p>
+      <div style="display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-bottom:48px">
+        <a href="https://wa.me/5531987324394?text=Ol%C3%A1%20Rafael%2C%20vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20as%20aulas!" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:11px;background:#25D366;color:#fff;font-size:1.05rem;font-weight:800;padding:15px 28px;border-radius:999px;text-decoration:none;box-shadow:0 4px 24px rgba(37,211,102,.4);transition:all .2s" style-hover="background:#1DAA54;transform:translateY(-2px);box-shadow:0 8px 32px rgba(37,211,102,.5)">
+          <svg viewBox="0 0 24 24" style="width:21px;height:21px;fill:#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>Falar no WhatsApp
+        </a>
+        <a href="#avaliacoes" style="color:rgba(255,255,255,.58);font-size:.95rem;font-weight:600;text-decoration:none;border-bottom:2px solid rgba(232,98,10,.4);padding-bottom:2px;transition:all .2s" style-hover="color:#FF7A20;border-color:#E8620A">Ver avaliações ↓</a>
+      </div>
+      <div style="display:flex;gap:32px;flex-wrap:wrap;padding-top:26px;border-top:1px solid rgba(255,255,255,.08)">
+        <div><div style="font-size:1.7rem;font-weight:900;color:#E8620A;line-height:1.2">14</div><div style="font-size:.68rem;color:rgba(255,255,255,.38);text-transform:uppercase;letter-spacing:.08em">Anos de instrutor</div></div>
+        <div><div style="font-size:1.7rem;font-weight:900;color:#E8620A;line-height:1.2">+1.000</div><div style="font-size:.68rem;color:rgba(255,255,255,.38);text-transform:uppercase;letter-spacing:.08em">Aprovações</div></div>
+        <div><div style="font-size:1.7rem;font-weight:900;color:#E8620A;line-height:1.2">5★</div><div style="font-size:.68rem;color:rgba(255,255,255,.38);text-transform:uppercase;letter-spacing:.08em">Google</div></div>
+        <div><div style="font-size:1.7rem;font-weight:900;color:#E8620A;line-height:1.2">BH</div><div style="font-size:.68rem;color:rgba(255,255,255,.38);text-transform:uppercase;letter-spacing:.08em">e região</div></div>
+      </div>
+    </div>
+  </div>
+  <div id="hDots" style="position:absolute;bottom:14px;left:24px;z-index:4;display:flex;gap:7px;align-items:center"></div>
+</section>
+
+<!-- AVALIAÇÕES GOOGLE -->
+<section id="avaliacoes" style="padding:96px 0;background:#F9F8F6">
+  <div style="max-width:1120px;margin:0 auto;padding:0 24px">
+    <div style="text-align:center;margin-bottom:8px">
+      <div style="display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid #E5E7EB;border-radius:999px;padding:6px 16px 6px 10px;font-size:.85rem;font-weight:600;box-shadow:0 2px 8px rgba(0,0,0,.05)">
+        <svg viewBox="0 0 48 48" style="width:20px;height:20px"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.18 1.48-4.97 2.35-8.16 2.35-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+        Avaliações Google
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;justify-content:center;gap:8px;margin:12px 0 36px">
+      <span style="color:#F59E0B;font-size:22px;letter-spacing:2px">★★★★★</span>
+      <span style="font-size:1.5rem;font-weight:900">5,0</span>
+      <span style="font-size:.9rem;color:#6B7280">no Google</span>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:20px">
+      <!-- Avaliação 1 -->
+      <article style="background:#fff;border-radius:16px;padding:24px 22px;box-shadow:0 1px 4px rgba(0,0,0,.04);border:1px solid rgba(0,0,0,.04);position:relative;transition:box-shadow .25s" style-hover="box-shadow:0 8px 28px rgba(0,0,0,.08)">
+        <div style="font-size:2.8rem;line-height:.8;color:rgba(232,98,10,.08);font-family:Georgia,serif;position:absolute;top:12px;left:18px">"</div>
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;padding-top:4px">
+          <div style="position:relative;width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#E8620A,#FF9F50);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.9rem;color:#fff;flex-shrink:0;overflow:hidden">V<img src="https://lh3.googleusercontent.com/a-/ALV-UjVlo7rvp8T--BYnxIyVQUqK1Riv4CMeV3ITheesj8o9sQwPmyms0Q=s96-c" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:50%" onerror="this.style.display='none'"/></div>
+          <div>
+            <a href="https://www.google.com/maps/contrib/109379960544677467546/reviews?hl=pt-BR" target="_blank" rel="noopener" style="font-weight:700;font-size:.9rem;line-height:1.3;color:#1A1A2E;text-decoration:none">Victória Fialho</a>
+            <div style="font-size:.72rem;color:#9CA3AF">4 semanas atrás</div>
+          </div>
+        </div>
+        <div style="color:#F59E0B;font-size:13px;letter-spacing:1px;margin-bottom:8px" aria-label="5 estrelas">★★★★★</div>
+        <p style="font-size:.87rem;color:#4B5563;line-height:1.65">Rafael foi o melhor instrutor que eu poderia ter, sempre com muita paciência me auxiliou a conquistar minha CNH com confiança. Excelente profissional!</p>
+      </article>
+      <!-- Avaliação 2 -->
+      <article style="background:#fff;border-radius:16px;padding:24px 22px;box-shadow:0 1px 4px rgba(0,0,0,.04);border:1px solid rgba(0,0,0,.04);position:relative;transition:box-shadow .25s" style-hover="box-shadow:0 8px 28px rgba(0,0,0,.08)">
+        <div style="font-size:2.8rem;line-height:.8;color:rgba(232,98,10,.08);font-family:Georgia,serif;position:absolute;top:12px;left:18px">"</div>
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;padding-top:4px">
+          <div style="position:relative;width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#6366F1,#A78BFA);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.9rem;color:#fff;flex-shrink:0;overflow:hidden">P<img src="https://lh3.googleusercontent.com/a-/ALV-UjWc27X8dS3dOYbTNVMc89xa5wEW0dKnXoxau6FVYkF-oKTVzm1q=s96-c" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:50%" onerror="this.style.display='none'"/></div>
+          <div>
+            <a href="https://www.google.com/maps/contrib/116448781231749243941/reviews?hl=pt-BR" target="_blank" rel="noopener" style="font-weight:700;font-size:.9rem;line-height:1.3;color:#1A1A2E;text-decoration:none">Paola Alves</a>
+            <div style="font-size:.72rem;color:#9CA3AF">3 semanas atrás · Novo</div>
+          </div>
+        </div>
+        <div style="color:#F59E0B;font-size:13px;letter-spacing:1px;margin-bottom:8px" aria-label="5 estrelas">★★★★★</div>
+        <p style="font-size:.87rem;color:#4B5563;line-height:1.65">Tirei minha carteira de habilitação com o instrutor Rafael em 2015 e fui aprovada de primeira. Hoje, com 11 anos de habilitação, sou muito grata por todo ensinamento e dedicação dele.<br/><br/>Na época, comprei 40 aulas e fiz apenas 38, pois sua preparação me deixou segura e confiante. Um profissional capacitado, disciplinado, pontual e excelente no que faz.<br/><br/>Super recomendo o trabalho do Rafael. Muito sucesso sempre! 🙏🏼✨</p>
+      </article>
+      <!-- Avaliação 3 -->
+      <article style="background:#fff;border-radius:16px;padding:24px 22px;box-shadow:0 1px 4px rgba(0,0,0,.04);border:1px solid rgba(0,0,0,.04);position:relative;transition:box-shadow .25s" style-hover="box-shadow:0 8px 28px rgba(0,0,0,.08)">
+        <div style="font-size:2.8rem;line-height:.8;color:rgba(232,98,10,.08);font-family:Georgia,serif;position:absolute;top:12px;left:18px">"</div>
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;padding-top:4px">
+          <div style="position:relative;width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#0EA5E9,#38BDF8);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.9rem;color:#fff;flex-shrink:0;overflow:hidden">S</div>
+          <div>
+            <a href="https://www.google.com/maps/contrib/113980284048949486255/reviews?hl=pt-BR" target="_blank" rel="noopener" style="font-weight:700;font-size:.9rem;line-height:1.3;color:#1A1A2E;text-decoration:none">Site Fredizak Oficial</a>
+            <div style="font-size:.72rem;color:#9CA3AF">4 semanas atrás</div>
+          </div>
+        </div>
+        <div style="color:#F59E0B;font-size:13px;letter-spacing:1px;margin-bottom:8px" aria-label="5 estrelas">★★★★★</div>
+        <p style="font-size:.87rem;color:#4B5563;line-height:1.65">Excelente profissional, dedicado, atencioso e consegue trabalhar nas nossas dificuldades de forma saudável e leve, sem pressão. Isso é importante, uma vez que o processo de habilitação já nos causa essa pressão de forma natural. Super indico o serviço dele.</p>
+      </article>
+      <!-- Avaliação 4 -->
+      <article style="background:#fff;border-radius:16px;padding:24px 22px;box-shadow:0 1px 4px rgba(0,0,0,.04);border:1px solid rgba(0,0,0,.04);position:relative;transition:box-shadow .25s" style-hover="box-shadow:0 8px 28px rgba(0,0,0,.08)">
+        <div style="font-size:2.8rem;line-height:.8;color:rgba(232,98,10,.08);font-family:Georgia,serif;position:absolute;top:12px;left:18px">"</div>
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;padding-top:4px">
+          <div style="position:relative;width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#10B981,#34D399);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.9rem;color:#fff;flex-shrink:0;overflow:hidden">V</div>
+          <div>
+            <a href="https://www.google.com/maps/contrib/103068227082011799248/reviews?hl=pt-BR" target="_blank" rel="noopener" style="font-weight:700;font-size:.9rem;line-height:1.3;color:#1A1A2E;text-decoration:none">Valdeci Batista Barbosa Barbosa</a>
+            <div style="font-size:.72rem;color:#9CA3AF">3 semanas atrás · Novo</div>
+          </div>
+        </div>
+        <div style="color:#F59E0B;font-size:13px;letter-spacing:1px;margin-bottom:8px" aria-label="5 estrelas">★★★★★</div>
+        <p style="font-size:.87rem;color:#4B5563;line-height:1.65">Hoje quero expressar minha sincera gratidão ao instrutor Rafael Giovanni. Sua paciência, dedicação, profissionalismo e confiança fizeram toda a diferença durante minha jornada de aprendizado. Mais do que ensinar a dirigir, você transmite segurança, responsabilidade e tranquilidade, incentivando seus alunos a acreditarem em seu próprio potencial.<br/><br/>Que Deus continue abençoando sua vida e seu trabalho, concedendo-lhe sabedoria, saúde e muito sucesso. Gratidão sempre!</p>
+      </article>
+      <!-- Avaliação 5 -->
+      <article style="background:#fff;border-radius:16px;padding:24px 22px;box-shadow:0 1px 4px rgba(0,0,0,.04);border:1px solid rgba(0,0,0,.04);position:relative;transition:box-shadow .25s" style-hover="box-shadow:0 8px 28px rgba(0,0,0,.08)">
+        <div style="font-size:2.8rem;line-height:.8;color:rgba(232,98,10,.08);font-family:Georgia,serif;position:absolute;top:12px;left:18px">"</div>
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;padding-top:4px">
+          <div style="position:relative;width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#F43F5E,#FB7185);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.9rem;color:#fff;flex-shrink:0;overflow:hidden">G</div>
+          <div>
+            <a href="https://www.google.com/maps/contrib/117735862802783801090/reviews?hl=pt-BR" target="_blank" rel="noopener" style="font-weight:700;font-size:.9rem;line-height:1.3;color:#1A1A2E;text-decoration:none">Gabriele</a>
+            <div style="font-size:.72rem;color:#9CA3AF">2 semanas atrás · Novo</div>
+          </div>
+        </div>
+        <div style="color:#F59E0B;font-size:13px;letter-spacing:1px;margin-bottom:8px" aria-label="5 estrelas">★★★★★</div>
+        <p style="font-size:.87rem;color:#4B5563;line-height:1.65">Rafael é um excelente professor. Muito paciente e atento às necessidades do aluno. Com as aulas, me senti confiante para a prova e para dirigir nas ruas. Recomendo muito!</p>
+      </article>
+      <!-- Avaliação 6 -->
+      <article style="background:#fff;border-radius:16px;padding:24px 22px;box-shadow:0 1px 4px rgba(0,0,0,.04);border:1px solid rgba(0,0,0,.04);position:relative;transition:box-shadow .25s" style-hover="box-shadow:0 8px 28px rgba(0,0,0,.08)">
+        <div style="font-size:2.8rem;line-height:.8;color:rgba(232,98,10,.08);font-family:Georgia,serif;position:absolute;top:12px;left:18px">"</div>
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;padding-top:4px">
+          <div style="position:relative;width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#F59E0B,#FBBF24);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.9rem;color:#fff;flex-shrink:0;overflow:hidden">J<img src="https://lh3.googleusercontent.com/a-/ALV-UjVN9KeuKFfK1uB-xGkm_O0a-9eschn7OwK1rYbvLQt5BL1A8B0=s96-c" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:50%" onerror="this.style.display='none'"/></div>
+          <div>
+            <a href="https://www.google.com/maps/contrib/113203666949628697668/reviews?hl=pt-BR" target="_blank" rel="noopener" style="font-weight:700;font-size:.9rem;line-height:1.3;color:#1A1A2E;text-decoration:none">Jucileia Gomes</a>
+            <div style="font-size:.72rem;color:#9CA3AF">2 semanas atrás · Novo</div>
+          </div>
+        </div>
+        <div style="color:#F59E0B;font-size:13px;letter-spacing:1px;margin-bottom:8px" aria-label="5 estrelas">★★★★★</div>
+        <p style="font-size:.87rem;color:#4B5563;line-height:1.65">Ótimo preço.<br/>Rafael mais do que um instrutor, ele é amigo dos seus alunos. Com muita paciência, só tenho a agradecer por tudo. Quando eu quis desistir, você me disse: “Você consegue!”. Enfim, eu consegui minha habilitação.</p>
+      </article>
+      <!-- Avaliação 7 -->
+      <article style="background:#fff;border-radius:16px;padding:24px 22px;box-shadow:0 1px 4px rgba(0,0,0,.04);border:1px solid rgba(0,0,0,.04);position:relative;transition:box-shadow .25s" style-hover="box-shadow:0 8px 28px rgba(0,0,0,.08)">
+        <div style="font-size:2.8rem;line-height:.8;color:rgba(232,98,10,.08);font-family:Georgia,serif;position:absolute;top:12px;left:18px">"</div>
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;padding-top:4px">
+          <div style="position:relative;width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#8B5CF6,#C4B5FD);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.9rem;color:#fff;flex-shrink:0;overflow:hidden">J</div>
+          <div>
+            <a href="https://www.google.com/maps/contrib/109733608917848260134/reviews?hl=pt-BR" target="_blank" rel="noopener" style="font-weight:700;font-size:.9rem;line-height:1.3;color:#1A1A2E;text-decoration:none">Julia Eduarda</a>
+            <div style="font-size:.72rem;color:#9CA3AF">3 semanas atrás · Novo</div>
+          </div>
+        </div>
+        <div style="color:#F59E0B;font-size:13px;letter-spacing:1px;margin-bottom:8px" aria-label="5 estrelas">★★★★★</div>
+        <p style="font-size:.87rem;color:#4B5563;line-height:1.65">Ótimo preço.<br/>Ótimo instrutor, sempre disposto a tirar dúvidas e ensinar, sem nunca desmotivar o aluno ou duvidar de sua capacidade. Todas as vezes em que me senti insegura, ele sempre me incentivou e disse que eu tinha potencial. Recomendo 100%. Sem dúvida, é o melhor instrutor de todos.</p>
+      </article>
+      <!-- Avaliação 8 -->
+      <article style="background:#fff;border-radius:16px;padding:24px 22px;box-shadow:0 1px 4px rgba(0,0,0,.04);border:1px solid rgba(0,0,0,.04);position:relative;transition:box-shadow .25s" style-hover="box-shadow:0 8px 28px rgba(0,0,0,.08)">
+        <div style="font-size:2.8rem;line-height:.8;color:rgba(232,98,10,.08);font-family:Georgia,serif;position:absolute;top:12px;left:18px">"</div>
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;padding-top:4px">
+          <div style="position:relative;width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#EC4899,#F472B6);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.9rem;color:#fff;flex-shrink:0;overflow:hidden">P</div>
+          <div>
+            <a href="https://www.google.com/maps/contrib/104913067423088664104/reviews?hl=pt-BR" target="_blank" rel="noopener" style="font-weight:700;font-size:.9rem;line-height:1.3;color:#1A1A2E;text-decoration:none">Pércia Cecília</a>
+            <div style="font-size:.72rem;color:#9CA3AF">3 semanas atrás · Novo</div>
+          </div>
+        </div>
+        <div style="color:#F59E0B;font-size:13px;letter-spacing:1px;margin-bottom:8px" aria-label="5 estrelas">★★★★★</div>
+        <p style="font-size:.87rem;color:#4B5563;line-height:1.65">Ótimo preço.<br/>Melhor instrutor! Atencioso, dedicado e sabe nos deixar confiantes.<br/>Já tinha sido reprovada e estava disposta a desistir, até que comecei a ter aulas com Rafael e passei no primeiro exame.<br/>Obrigada por ser paciente e ser esse instrutor tão competente.</p>
+      </article>
+      <!-- Avaliação 9 -->
+      <article style="background:#fff;border-radius:16px;padding:24px 22px;box-shadow:0 1px 4px rgba(0,0,0,.04);border:1px solid rgba(0,0,0,.04);position:relative;transition:box-shadow .25s" style-hover="box-shadow:0 8px 28px rgba(0,0,0,.08)">
+        <div style="font-size:2.8rem;line-height:.8;color:rgba(232,98,10,.08);font-family:Georgia,serif;position:absolute;top:12px;left:18px">"</div>
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;padding-top:4px">
+          <div style="position:relative;width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#14B8A6,#2DD4BF);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.9rem;color:#fff;flex-shrink:0;overflow:hidden">F<img src="https://lh3.googleusercontent.com/a-/ALV-UjUNdpTPweDM4W8ZUWHSJlZD7oOY2aoa9FzJEwKcZj-HhTAw0Wck=s96-c" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:50%" onerror="this.style.display='none'"/></div>
+          <div>
+            <a href="https://www.google.com/maps/contrib/116408801018019945227/reviews?hl=pt-BR" target="_blank" rel="noopener" style="font-weight:700;font-size:.9rem;line-height:1.3;color:#1A1A2E;text-decoration:none">Francislaine Dias</a>
+            <div style="font-size:.72rem;color:#9CA3AF">3 semanas atrás · Novo</div>
+          </div>
+        </div>
+        <div style="color:#F59E0B;font-size:13px;letter-spacing:1px;margin-bottom:8px" aria-label="5 estrelas">★★★★★</div>
+        <p style="font-size:.87rem;color:#4B5563;line-height:1.65">O Rafael foi meu instrutor de agosto a outubro de 2025. Foi paciente e persistente comigo. Fiz 30 aulas com ele e passei de primeira (puxou muito minha orelha). Agradeço por tudo. Você é nota mil, Rafa! Logo que tirei a CNH, já comecei a dirigir. Mesmo com as dificuldades e medos encontrados nesse trânsito, hoje vou para qualquer lugar com tranquilidade.</p>
+      </article>
+      <!-- Avaliação 10 -->
+      <article style="background:#fff;border-radius:16px;padding:24px 22px;box-shadow:0 1px 4px rgba(0,0,0,.04);border:1px solid rgba(0,0,0,.04);position:relative;transition:box-shadow .25s" style-hover="box-shadow:0 8px 28px rgba(0,0,0,.08)">
+        <div style="font-size:2.8rem;line-height:.8;color:rgba(232,98,10,.08);font-family:Georgia,serif;position:absolute;top:12px;left:18px">"</div>
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;padding-top:4px">
+          <div style="position:relative;width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#F97316,#FDBA74);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.9rem;color:#fff;flex-shrink:0;overflow:hidden">L<img src="https://lh3.googleusercontent.com/a-/ALV-UjU0m31RYrTPjCDn5RdXPI5JHN6EQZu5CskvFSdyFs0E-HvfOr4=s96-c" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:50%" onerror="this.style.display='none'"/></div>
+          <div>
+            <a href="https://www.google.com/maps/contrib/112595553288232495412/reviews?hl=pt-BR" target="_blank" rel="noopener" style="font-weight:700;font-size:.9rem;line-height:1.3;color:#1A1A2E;text-decoration:none">Leticia Carvalho</a>
+            <div style="font-size:.72rem;color:#9CA3AF">3 semanas atrás · Novo</div>
+          </div>
+        </div>
+        <div style="color:#F59E0B;font-size:13px;letter-spacing:1px;margin-bottom:8px" aria-label="5 estrelas">★★★★★</div>
+        <p style="font-size:.87rem;color:#4B5563;line-height:1.65">Ótimo preço.<br/>Experiência ímpar com o instrutor Rafael. Metodologia tranquila e super proativa de ensinar a dirigir. Prática respeitosa, empática e assertiva! Tirei minha habilitação de primeira com ele. Excelente profissional, indico de olhos fechados! Ainda mais para mim, que nunca tinha dirigido, dirigir aprendendo do zero foi maravilhoso!</p>
+      </article>
+      <!-- Avaliação 11 -->
+      <article style="background:#fff;border-radius:16px;padding:24px 22px;box-shadow:0 1px 4px rgba(0,0,0,.04);border:1px solid rgba(0,0,0,.04);position:relative;transition:box-shadow .25s" style-hover="box-shadow:0 8px 28px rgba(0,0,0,.08)">
+        <div style="font-size:2.8rem;line-height:.8;color:rgba(232,98,10,.08);font-family:Georgia,serif;position:absolute;top:12px;left:18px">"</div>
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;padding-top:4px">
+          <div style="position:relative;width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#2563EB,#60A5FA);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.9rem;color:#fff;flex-shrink:0;overflow:hidden">E<img src="https://lh3.googleusercontent.com/a-/ALV-UjUkOQMnFAKQbczl7ipTElRlogAgnEdQCF202nrISe9jZekBU8cNHw=s96-c" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:50%" onerror="this.style.display='none'"/></div>
+          <div>
+            <a href="https://www.google.com/maps/contrib/103876455903950713747/reviews?hl=pt-BR" target="_blank" rel="noopener" style="font-weight:700;font-size:.9rem;line-height:1.3;color:#1A1A2E;text-decoration:none">Eduarda Fernandes</a>
+            <div style="font-size:.72rem;color:#9CA3AF">3 semanas atrás · Novo</div>
+          </div>
+        </div>
+        <div style="color:#F59E0B;font-size:13px;letter-spacing:1px;margin-bottom:8px" aria-label="5 estrelas">★★★★★</div>
+        <p style="font-size:.87rem;color:#4B5563;line-height:1.65">O Rafael é um excelente profissional e um ótimo professor. Responsável, comprometido, passa a segurança que o condutor em formação precisa para conseguir aprender a dirigir.<br/><br/>Recomendo as aulas com o Rafael para todos que me perguntam com quem eu tirei minha CNH. E sim, faz toda diferença fazer as aulas de direção, ainda mais com alguém que te passa segurança no trânsito e nas situações adversas do cotidiano.</p>
+      </article>
+      <!-- Avaliação 12 -->
+      <article style="background:#fff;border-radius:16px;padding:24px 22px;box-shadow:0 1px 4px rgba(0,0,0,.04);border:1px solid rgba(0,0,0,.04);position:relative;transition:box-shadow .25s" style-hover="box-shadow:0 8px 28px rgba(0,0,0,.08)">
+        <div style="font-size:2.8rem;line-height:.8;color:rgba(232,98,10,.08);font-family:Georgia,serif;position:absolute;top:12px;left:18px">"</div>
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;padding-top:4px">
+          <div style="position:relative;width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#DB2777,#F472B6);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.9rem;color:#fff;flex-shrink:0;overflow:hidden">P<img src="https://lh3.googleusercontent.com/a-/ALV-UjWk1Fy-DC11jbRowOJ9cYLBq7S4hFNmb_4Xu6j7sFfxec_ECn1M=s96-c" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:50%" onerror="this.style.display='none'"/></div>
+          <div>
+            <a href="https://www.google.com/maps/contrib/115790123504348439504/reviews?hl=pt-BR" target="_blank" rel="noopener" style="font-weight:700;font-size:.9rem;line-height:1.3;color:#1A1A2E;text-decoration:none">Priscila Santos</a>
+            <div style="font-size:.72rem;color:#9CA3AF">3 semanas atrás · Novo</div>
+          </div>
+        </div>
+        <div style="color:#F59E0B;font-size:13px;letter-spacing:1px;margin-bottom:8px" aria-label="5 estrelas">★★★★★</div>
+        <p style="font-size:.87rem;color:#4B5563;line-height:1.65">Fui aprovada! ✨<br/>E só tenho a agradecer ao instrutor Rafael pela capacidade, extrema paciência, dedicação e pela forma como ensina com muita segurança, buscando sempre se adaptar às necessidades e dificuldades de cada aluno — o que faz toda diferença no processo de quem está em busca da tão sonhada habilitação.<br/><br/>Para todos que querem aprender no seu ritmo e sem medo de errar, recomendo sem sombra de dúvidas. Consegui minha aprovação graças às suas instruções. Muito obrigado! Um excelente profissional! Melhor investimento! ✨☺️</p>
+      </article>
+      <!-- Avaliação 13 -->
+      <article style="background:#fff;border-radius:16px;padding:24px 22px;box-shadow:0 1px 4px rgba(0,0,0,.04);border:1px solid rgba(0,0,0,.04);position:relative;transition:box-shadow .25s" style-hover="box-shadow:0 8px 28px rgba(0,0,0,.08)">
+        <div style="font-size:2.8rem;line-height:.8;color:rgba(232,98,10,.08);font-family:Georgia,serif;position:absolute;top:12px;left:18px">"</div>
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;padding-top:4px">
+          <div style="position:relative;width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#059669,#34D399);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.9rem;color:#fff;flex-shrink:0;overflow:hidden">A<img src="https://lh3.googleusercontent.com/a-/ALV-UjVvYCRYP-5PzmnFZ85B4PJdBQESyZ8_Up5JmDRT5ChEMWhQU3i4=s96-c" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:50%" onerror="this.style.display='none'"/></div>
+          <div>
+            <a href="https://www.google.com/maps/contrib/103397043252305715154/reviews?hl=pt-BR" target="_blank" rel="noopener" style="font-weight:700;font-size:.9rem;line-height:1.3;color:#1A1A2E;text-decoration:none">Adryelle Fernandes</a>
+            <div style="font-size:.72rem;color:#9CA3AF">4 semanas atrás</div>
+          </div>
+        </div>
+        <div style="color:#F59E0B;font-size:13px;letter-spacing:1px;margin-bottom:8px" aria-label="5 estrelas">★★★★★</div>
+        <p style="font-size:.87rem;color:#4B5563;line-height:1.65">Estou gostando muito das aulas! O Rafael é paciente, pontual e explica tudo de um jeito fácil de entender. Tem me ajudado a ganhar mais confiança ao volante, explica com calma e muita sabedoria. Recomendo!</p>
+      </article>
+      <!-- Avaliação 14 -->
+      <article style="background:#fff;border-radius:16px;padding:24px 22px;box-shadow:0 1px 4px rgba(0,0,0,.04);border:1px solid rgba(0,0,0,.04);position:relative;transition:box-shadow .25s" style-hover="box-shadow:0 8px 28px rgba(0,0,0,.08)">
+        <div style="font-size:2.8rem;line-height:.8;color:rgba(232,98,10,.08);font-family:Georgia,serif;position:absolute;top:12px;left:18px">"</div>
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;padding-top:4px">
+          <div style="position:relative;width:42px;height:42px;border-radius:50%;background:linear-gradient(135deg,#7C3AED,#A78BFA);display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.9rem;color:#fff;flex-shrink:0;overflow:hidden">G<img src="https://lh3.googleusercontent.com/a-/ALV-UjXxp2OOVOEmIUn22vuZF-hW1DsDsmR7LQ8GPmqluk_lIBSOh88PwA=s96-c" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:50%" onerror="this.style.display='none'"/></div>
+          <div>
+            <a href="https://www.google.com/maps/contrib/101961832465589305416/reviews?hl=pt-BR" target="_blank" rel="noopener" style="font-weight:700;font-size:.9rem;line-height:1.3;color:#1A1A2E;text-decoration:none">Geovana Chaves</a>
+            <div style="font-size:.72rem;color:#9CA3AF">4 semanas atrás</div>
+          </div>
+        </div>
+        <div style="color:#F59E0B;font-size:13px;letter-spacing:1px;margin-bottom:8px" aria-label="5 estrelas">★★★★★</div>
+        <p style="font-size:.87rem;color:#4B5563;line-height:1.65">Com certeza o melhor! Tirei minha carteira com o Rafael em 2018 e indico muito! Cuidadoso, cauteloso e ainda teve que ter muita paciência comigo kkk. Sucesso, Fael!</p>
+      </article>
+    </div>
+    <p style="text-align:center;margin-top:28px;font-size:.8rem;color:#6B7280;background:rgba(232,98,10,.04);border:1px solid rgba(232,98,10,.1);border-radius:10px;padding:12px 22px;max-width:620px;margin-left:auto;margin-right:auto">Todas as avaliações exibidas foram enviadas pelos alunos e estão com nota máxima no Google.</p>
+    <button id="reviews-toggle" type="button" aria-expanded="false">Mostrar mais avaliações <span class="review-arrow" aria-hidden="true">⌄</span></button>
+  </div>
+</section>
+
+<!-- SERVIÇOS -->
+<section id="servicos" style="padding:96px 0;background:#fff">
+  <div style="max-width:1120px;margin:0 auto;padding:0 24px">
+    <div style="text-align:center;margin-bottom:44px">
+      <span style="display:inline-block;background:#E8620A;color:#fff;font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;border-radius:999px;padding:5px 16px;margin-bottom:14px">Serviços</span>
+      <h2 style="font-size:clamp(1.6rem,4vw,2.4rem);font-weight:800;margin-bottom:10px">O que eu <span style="color:#E8620A">ofereço</span></h2>
+      <p style="color:#6B7280;font-size:1rem">Soluções completas para sua habilitação e segurança</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(320px,1fr));gap:20px">
+      <!-- Aulas Práticas -->
+      <div style="background:#FAFAF8;border:1px solid rgba(0,0,0,.05);border-radius:16px;padding:28px 24px;transition:all .25s;position:relative" style-hover="box-shadow:0 8px 28px rgba(0,0,0,.07);border-color:rgba(232,98,10,.15)">
+        <div style="width:48px;height:48px;background:rgba(232,98,10,.08);border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:16px">
+          <svg viewBox="0 0 24 24" style="width:24px;height:24px;fill:#E8620A"><path d="M18.92 6.01C18.72 5.42 18.16 5 17.5 5h-11c-.66 0-1.21.42-1.42 1.01L3 12v8c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h12v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-8l-2.08-5.99zM6.5 16c-.83 0-1.5-.67-1.5-1.5S5.67 13 6.5 13s1.5.67 1.5 1.5S7.33 16 6.5 16zm11 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zM5 11l1.5-4.5h11L19 11H5z"/></svg>
+        </div>
+        <h3 style="font-size:1.08rem;font-weight:800;margin-bottom:8px">Aulas Práticas</h3>
+        <p style="color:#6B7280;font-size:.88rem;line-height:1.65">Aulas ao volante com acompanhamento próximo, no seu ritmo. Ideal para quem está tirando a habilitação e quer ganhar confiança no trânsito de BH.</p>
+        <span style="display:inline-block;margin-top:14px;font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:rgba(232,98,10,.08);color:#E8620A;padding:4px 12px;border-radius:999px">Mais popular</span>
+      </div>
+      <!-- Preparação para Exame -->
+      <div style="background:#FAFAF8;border:1px solid rgba(0,0,0,.05);border-radius:16px;padding:28px 24px;transition:all .25s" style-hover="box-shadow:0 8px 28px rgba(0,0,0,.07);border-color:rgba(232,98,10,.15)">
+        <div style="width:48px;height:48px;background:rgba(232,98,10,.08);border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:16px">
+          <svg viewBox="0 0 24 24" style="width:24px;height:24px;fill:#E8620A"><path d="M9 3L5 6.99h3V14h2V6.99h3L9 3zm7 14.01V10h-2v7.01h-3L15 21l4-3.99h-3z"/></svg>
+        </div>
+        <h3 style="font-size:1.08rem;font-weight:800;margin-bottom:8px">Preparação para Exame</h3>
+        <p style="color:#6B7280;font-size:.88rem;line-height:1.65">Simulados completos e treino nos percursos reais usados nas provas do DETRAN-MG. Maximize sua chance de aprovação na primeira tentativa.</p>
+        <span style="display:inline-block;margin-top:14px;font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:rgba(232,98,10,.08);color:#E8620A;padding:4px 12px;border-radius:999px">Alta aprovação</span>
+      </div>
+      <!-- Reforço para Habilitados -->
+      <div style="background:#FAFAF8;border:1px solid rgba(0,0,0,.05);border-radius:16px;padding:28px 24px;transition:all .25s" style-hover="box-shadow:0 8px 28px rgba(0,0,0,.07);border-color:rgba(232,98,10,.15)">
+        <div style="width:48px;height:48px;background:rgba(232,98,10,.08);border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:16px">
+          <svg viewBox="0 0 24 24" style="width:24px;height:24px;fill:#E8620A"><path d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12 5.16-1.26 9-6.45 9-12V5l-9-4z"/></svg>
+        </div>
+        <h3 style="font-size:1.08rem;font-weight:800;margin-bottom:8px">Reforço para Habilitados</h3>
+        <p style="color:#6B7280;font-size:.88rem;line-height:1.65">Ficou tempo sem dirigir ou quer mais segurança? Aulas de reforço para motoristas habilitados que precisam de prática extra no dia a dia.</p>
+      </div>
+      <!-- Aulas Avulsas -->
+      <div style="background:#FAFAF8;border:1px solid rgba(0,0,0,.05);border-radius:16px;padding:28px 24px;transition:all .25s" style-hover="box-shadow:0 8px 28px rgba(0,0,0,.07);border-color:rgba(232,98,10,.15)">
+        <div style="width:48px;height:48px;background:rgba(232,98,10,.08);border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:16px">
+          <svg viewBox="0 0 24 24" style="width:24px;height:24px;fill:#E8620A"><path d="M11.5 2C6.81 2 3 5.81 3 10.5S6.81 19 11.5 19h.5v3c4.86-2.34 8-7 8-11.5C20 5.81 16.19 2 11.5 2zm1 14.5h-2v-2h2v2zm0-4h-2c0-3.25 3-3 3-5 0-1.1-.9-2-2-2s-2 .9-2 2h-2c0-2.21 1.79-4 4-4s4 1.79 4 4c0 2.5-3 2.75-3 5z"/></svg>
+        </div>
+        <h3 style="font-size:1.08rem;font-weight:800;margin-bottom:8px">Aulas Avulsas</h3>
+        <p style="color:#6B7280;font-size:.88rem;line-height:1.65">Sem compromisso com pacotes fechados. Agende uma ou mais aulas conforme sua disponibilidade, pagando por hora de aula.</p>
+        <span style="display:inline-block;margin-top:14px;font-size:.68rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;background:rgba(232,98,10,.08);color:#E8620A;padding:4px 12px;border-radius:999px">Sem pacote mínimo</span>
+      </div>
+      <!-- Manobras Especiais -->
+      <div style="background:#FAFAF8;border:1px solid rgba(0,0,0,.05);border-radius:16px;padding:28px 24px;transition:all .25s" style-hover="box-shadow:0 8px 28px rgba(0,0,0,.07);border-color:rgba(232,98,10,.15)">
+        <div style="width:48px;height:48px;background:rgba(232,98,10,.08);border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:16px">
+          <svg viewBox="0 0 24 24" style="width:24px;height:24px;fill:#E8620A"><path d="M21 3L3 10.53v.98l6.84 2.65L12.48 21h.98L21 3z"/></svg>
+        </div>
+        <h3 style="font-size:1.08rem;font-weight:800;margin-bottom:8px">Manobras Especiais</h3>
+        <p style="color:#6B7280;font-size:.88rem;line-height:1.65">Estacionamento paralelo, em garagem, baliza, marcha à ré em curvas e parada em rampa. Treino focado nas manobras que mais geram reprovação.</p>
+      </div>
+      <!-- Trânsito Intenso -->
+      <div style="background:#FAFAF8;border:1px solid rgba(0,0,0,.05);border-radius:16px;padding:28px 24px;transition:all .25s" style-hover="box-shadow:0 8px 28px rgba(0,0,0,.07);border-color:rgba(232,98,10,.15)">
+        <div style="width:48px;height:48px;background:rgba(232,98,10,.08);border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:16px">
+          <svg viewBox="0 0 24 24" style="width:24px;height:24px;fill:#E8620A"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 14.5v-9l6 4.5-6 4.5z"/></svg>
+        </div>
+        <h3 style="font-size:1.08rem;font-weight:800;margin-bottom:8px">Trânsito Intenso &amp; Vias Rápidas</h3>
+        <p style="color:#6B7280;font-size:.88rem;line-height:1.65">Aulas em avenidas movimentadas, rotatórias, viadutos e horários de pico. Para dominar o trânsito de BH com total confiança.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- POR QUE O RAFAEL -->
+<section id="sobre" style="padding:96px 0;background:#141420">
+  <div style="max-width:1120px;margin:0 auto;padding:0 24px">
+    <div style="text-align:center;margin-bottom:44px">
+      <span style="display:inline-block;background:#E8620A;color:#fff;font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;border-radius:999px;padding:5px 16px;margin-bottom:14px">Por que escolher</span>
+      <h2 style="font-size:clamp(1.6rem,4vw,2.4rem);font-weight:800;color:#fff;margin-bottom:10px">Por que o <span style="color:#E8620A">Rafael?</span></h2>
+      <p style="color:rgba(255,255,255,.45);font-size:1rem">Experiência, resultados e dedicação em cada aula</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:18px">
+      <!-- 14 anos -->
+      <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:16px;padding:28px 24px;transition:all .25s" style-hover="background:rgba(232,98,10,.07);border-color:rgba(232,98,10,.2)">
+        <div style="width:48px;height:48px;background:rgba(232,98,10,.12);border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:14px">
+          <svg viewBox="0 0 24 24" style="width:24px;height:24px;fill:#E8620A"><path d="M19 5h-2V3H7v2H5c-1.1 0-2 .9-2 2v1c0 2.55 1.92 4.63 4.39 4.94.63 1.5 1.98 2.63 3.61 2.96V19H7v2h10v-2h-4v-3.1c1.63-.33 2.98-1.46 3.61-2.96C19.08 12.63 21 10.55 21 8V7c0-1.1-.9-2-2-2z"/></svg>
+        </div>
+        <h4 style="font-size:1rem;font-weight:700;color:#fff;margin-bottom:8px"><span style="display:block;font-size:1.55rem;font-weight:900;color:#E8620A;line-height:1.1;margin-bottom:4px">14 anos</span>de experiência</h4>
+        <p style="font-size:.85rem;color:rgba(255,255,255,.45);line-height:1.6">Mais de uma década formando motoristas seguros e confiantes nas ruas de Belo Horizonte e região.</p>
+      </div>
+      <!-- +1.000 -->
+      <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:16px;padding:28px 24px;transition:all .25s" style-hover="background:rgba(232,98,10,.07);border-color:rgba(232,98,10,.2)">
+        <div style="width:48px;height:48px;background:rgba(232,98,10,.12);border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:14px">
+          <svg viewBox="0 0 24 24" style="width:24px;height:24px;fill:#E8620A"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg>
+        </div>
+        <h4 style="font-size:1rem;font-weight:700;color:#fff;margin-bottom:8px"><span style="display:block;font-size:1.55rem;font-weight:900;color:#E8620A;line-height:1.1;margin-bottom:4px">+1.000</span>aprovações</h4>
+        <p style="font-size:.85rem;color:rgba(255,255,255,.45);line-height:1.6">Mais de mil alunos aprovados no exame prático do DETRAN. Um histórico real de resultados que fala por si.</p>
+      </div>
+      <!-- Personalizadas -->
+      <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:16px;padding:28px 24px;transition:all .25s" style-hover="background:rgba(232,98,10,.07);border-color:rgba(232,98,10,.2)">
+        <div style="width:48px;height:48px;background:rgba(232,98,10,.12);border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:14px">
+          <svg viewBox="0 0 24 24" style="width:24px;height:24px;fill:#E8620A"><path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/></svg>
+        </div>
+        <h4 style="font-size:1rem;font-weight:700;color:#fff;margin-bottom:8px">Aulas personalizadas</h4>
+        <p style="font-size:.85rem;color:rgba(255,255,255,.45);line-height:1.6">Cada aluno tem um ritmo diferente. As aulas são moldadas ao seu perfil e às suas dificuldades específicas.</p>
+      </div>
+      <!-- Horários -->
+      <div style="background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.06);border-radius:16px;padding:28px 24px;transition:all .25s" style-hover="background:rgba(232,98,10,.07);border-color:rgba(232,98,10,.2)">
+        <div style="width:48px;height:48px;background:rgba(232,98,10,.12);border-radius:12px;display:flex;align-items:center;justify-content:center;margin-bottom:14px">
+          <svg viewBox="0 0 24 24" style="width:24px;height:24px;fill:#E8620A"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg>
+        </div>
+        <h4 style="font-size:1rem;font-weight:700;color:#fff;margin-bottom:8px">Horários flexíveis</h4>
+        <p style="font-size:.85rem;color:rgba(255,255,255,.45);line-height:1.6">Agendamento que se adapta à sua rotina, incluindo fins de semana e horários alternativos durante a semana.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALERIA DE APROVADOS (teaser) -->
+<section id="aprovados" style="padding:96px 0;background:#fff">
+  <div style="max-width:1120px;margin:0 auto;padding:0 24px">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:32px">
+      <div>
+        <span style="display:inline-block;background:#E8620A;color:#fff;font-size:.72rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;border-radius:999px;padding:5px 16px;margin-bottom:14px">Mural</span>
+        <h2 style="font-size:clamp(1.6rem,4vw,2.4rem);font-weight:800;margin-bottom:8px">Galeria de <span style="color:#E8620A">aprovados</span></h2>
+        <p style="color:#6B7280;font-size:1rem;max-width:520px">Mais de 100 alunos aprovados no exame prático. Cada foto é uma conquista de verdade.<br/><span style="display:inline-block;margin-top:8px;font-size:.82rem;color:#9CA3AF">Com o tempo, muitas fotos acabaram se perdendo, mas ainda temos muito mais aprovações registradas no <a href="https://instagram.com/rhfgrafael" target="_blank" rel="noopener" style="color:#E8620A;font-weight:700">Instagram →</a></span></p>
+      </div>
+      <a href="Aprovados.dc.html" style="display:inline-flex;align-items:center;gap:10px;background:#141420;color:#fff;font-weight:700;font-size:.92rem;padding:14px 24px;border-radius:999px;text-decoration:none;white-space:nowrap;transition:all .2s" style-hover="background:#E8620A;transform:translateY(-2px)">Ver galeria completa →</a>
+    </div>
+    <div id="approved-home-gallery" aria-label="Prévia aleatória de fotos de aprovados"></div>
+  </div>
+</section>
+
+<!-- INSTAGRAM -->
+<section style="padding:56px 0;background:#F9F8F6;border-top:1px solid rgba(0,0,0,.05)">
+  <div style="max-width:1120px;margin:0 auto;padding:0 24px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap">
+    <div style="display:flex;align-items:center;gap:18px">
+      <div style="width:56px;height:56px;border-radius:16px;background:linear-gradient(45deg,#F58529,#DD2A7B,#8134AF);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+        <svg viewBox="0 0 24 24" style="width:30px;height:30px;fill:#fff"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.42.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.42.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41-.56-.22-.96-.48-1.38-.9-.42-.42-.68-.82-.9-1.38-.16-.42-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.42-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16zM12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63c-.79.3-1.46.72-2.12 1.39C1.35 2.68.93 3.35.63 4.14.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.3.79.72 1.46 1.39 2.12.66.67 1.33 1.09 2.12 1.39.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56.79-.3 1.46-.72 2.12-1.39.67-.66 1.09-1.33 1.39-2.12.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91-.3-.79-.72-1.46-1.39-2.12C21.32 1.35 20.65.93 19.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 100 12.32 6.16 6.16 0 000-12.32zM12 16a4 4 0 110-8 4 4 0 010 8zm7.85-10.4a1.44 1.44 0 11-2.88 0 1.44 1.44 0 012.88 0z"/></svg>
+      </div>
+      <div>
+        <div style="font-weight:800;font-size:1.08rem;margin-bottom:2px">Acompanhe no Instagram</div>
+        <p style="color:#6B7280;font-size:.9rem">Aprovações, dicas de trânsito e o dia a dia das aulas.</p>
+      </div>
+    </div>
+    <a href="https://instagram.com/rhfgrafael" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:10px;background:linear-gradient(45deg,#F58529,#DD2A7B,#8134AF);color:#fff;font-weight:700;font-size:.95rem;padding:14px 26px;border-radius:999px;text-decoration:none;white-space:nowrap;box-shadow:0 4px 20px rgba(221,42,123,.28);transition:transform .2s" style-hover="transform:translateY(-2px)">Seguir @rhfgrafael</a>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="contato" style="padding:96px 0;position:relative;overflow:hidden;text-align:center;background:#1C1C30">
+  <div style="position:absolute;inset:0;background:radial-gradient(circle at 50% 50%,rgba(232,98,10,.16) 0%,transparent 58%)"></div>
+  <div style="position:relative;max-width:1120px;margin:0 auto;padding:0 24px">
+    <h2 style="font-size:clamp(1.8rem,5vw,2.8rem);font-weight:900;color:#fff;margin-bottom:14px">Pronto para <span style="color:#E8620A">dirigir com confiança?</span></h2>
+    <p style="color:rgba(255,255,255,.5);font-size:1rem;margin-bottom:40px;max-width:480px;margin-left:auto;margin-right:auto">Entre em contato agora e agende sua primeira aula. Atendimento rápido pelo WhatsApp!</p>
+    <div style="position:relative;display:inline-block">
+      <div style="position:absolute;inset:-6px;border-radius:999px;background:#25D366;animation:pr 2s ease-out infinite;pointer-events:none"></div>
+      <a href="https://wa.me/5531987324394?text=Ol%C3%A1%20Rafael%2C%20vim%20pelo%20site%20e%20quero%20saber%20mais%20sobre%20as%20aulas!" target="_blank" rel="noopener" style="position:relative;display:inline-flex;align-items:center;gap:14px;background:#25D366;color:#fff;font-size:1.15rem;font-weight:800;padding:20px 40px;border-radius:999px;text-decoration:none;box-shadow:0 6px 36px rgba(37,211,102,.45);transition:all .2s" style-hover="background:#1DAA54;transform:translateY(-3px) scale(1.03);box-shadow:0 12px 48px rgba(37,211,102,.55)">
+        <svg viewBox="0 0 24 24" style="width:26px;height:26px;fill:#fff"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>(31) 98732-4394 – Falar agora!
+      </a>
+    </div>
+    <p style="margin-top:18px;font-size:.8rem;color:rgba(255,255,255,.28)">Resposta rápida · Sem compromisso · BH e região</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer style="background:#0F0F1A;padding:48px 0 28px;color:rgba(255,255,255,.55)">
+  <div style="max-width:1120px;margin:0 auto;padding:0 24px">
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:32px;margin-bottom:36px">
+      <div>
+        <div style="font-size:1.2rem;font-weight:900;color:#fff">Rafael <span style="color:#E8620A">Giovannini</span></div>
+        <div style="font-size:.72rem;color:rgba(255,255,255,.28);text-transform:uppercase;letter-spacing:.12em;margin-top:3px;margin-bottom:14px">Instrutor de Trânsito</div>
+        <p style="font-size:.86rem;color:rgba(255,255,255,.38);line-height:1.65">14 anos formando motoristas seguros em BH. <em>Dirija com mais confiança.</em></p>
+      </div>
+      <div>
+        <div style="font-size:.76rem;font-weight:700;color:#fff;text-transform:uppercase;letter-spacing:.1em;margin-bottom:14px">Serviços</div>
+        <div style="display:flex;flex-direction:column;gap:9px">
+          <a href="#servicos" style="color:rgba(255,255,255,.42);font-size:.86rem;text-decoration:none;transition:color .2s" style-hover="color:#FF7A20">Aulas Práticas</a>
+          <a href="#servicos" style="color:rgba(255,255,255,.42);font-size:.86rem;text-decoration:none;transition:color .2s" style-hover="color:#FF7A20">Preparação para Exame</a>
+          <a href="#servicos" style="color:rgba(255,255,255,.42);font-size:.86rem;text-decoration:none;transition:color .2s" style-hover="color:#FF7A20">Reforço para Habilitados</a>
+          <a href="#servicos" style="color:rgba(255,255,255,.42);font-size:.86rem;text-decoration:none;transition:color .2s" style-hover="color:#FF7A20">Manobras Especiais</a>
+        </div>
+      </div>
+      <div>
+        <div style="font-size:.76rem;font-weight:700;color:#fff;text-transform:uppercase;letter-spacing:.1em;margin-bottom:14px">Contato</div>
+        <div style="display:flex;flex-direction:column;gap:9px">
+          <a href="https://wa.me/5531987324394" target="_blank" style="color:rgba(255,255,255,.42);font-size:.86rem;text-decoration:none;transition:color .2s" style-hover="color:#FF7A20">(31) 98732-4394</a>
+          <a href="https://instagram.com/rhfgrafael" target="_blank" style="color:rgba(255,255,255,.42);font-size:.86rem;text-decoration:none;transition:color .2s" style-hover="color:#FF7A20">@rhfgrafael</a>
+          <a href="#sobre" style="color:rgba(255,255,255,.42);font-size:.86rem;text-decoration:none;transition:color .2s" style-hover="color:#FF7A20">BH e região</a>
+        </div>
+      </div>
+    </div>
+    <div style="border-top:1px solid rgba(255,255,255,.06);padding-top:20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;font-size:.76rem;color:rgba(255,255,255,.18)">
+      <span>© 2025 Rafael Giovannini – Instrutor de Trânsito</span>
+      <span>Feito com ♥ em Belo Horizonte</span>
+    </div>
+  </div>
+</footer>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;slideInterval&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:4,&quot;min&quot;:2,&quot;max&quot;:8,&quot;step&quot;:0.5,&quot;unit&quot;:&quot;s&quot;,&quot;section&quot;:&quot;Hero&quot;},&quot;showRoadStripe&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:true,&quot;section&quot;:&quot;Hero&quot;}}">
+
+class Component extends DCLogic {
+  state = {};
+  componentDidMount() {
+    this._buildSlideshow();
+    this._setupScroll();
+  }
+  componentDidUpdate(prevProps) {
+    var newMs = ((this.props.slideInterval || 4) * 1000);
+    var oldMs = ((prevProps.slideInterval || 4) * 1000);
+    if (newMs !== oldMs && this._nextFn) {
+      clearInterval(this._timer);
+      this._timer = setInterval(this._nextFn, newMs);
+    }
+  }
+  componentWillUnmount() {
+    clearInterval(this._timer);
+    if (this._scrollFn) window.removeEventListener('scroll', this._scrollFn);
+  }
+  _buildSlideshow() {
+    var slides = window.__heroSlides || [];
+    var wrap = document.getElementById('hSlides');
+    var dotsEl = document.getElementById('hDots');
+    if (!wrap || !slides.length) return;
+    var cur = 0, els = [], dots = [];
+    slides.forEach(function(s, i) {
+      var d = document.createElement('div');
+      d.style.cssText = 'position:absolute;inset:0;opacity:' + (i === 0 ? 1 : 0) + ';transition:opacity 1s ease';
+      var bl = document.createElement('div');
+      bl.style.cssText = 'position:absolute;inset:-28px;background-size:cover;background-position:center;filter:blur(20px) brightness(.35);transform:scale(1.12);background-image:url(' + s.src + ')';
+      d.appendChild(bl);
+      var sh = document.createElement('div');
+      sh.style.cssText = 'position:absolute;inset:0;background-repeat:no-repeat;background-position:center;background-size:' + (s.portrait ? 'contain' : 'cover') + ';background-image:url(' + s.src + ')';
+      d.appendChild(sh);
+      wrap.appendChild(d);
+      els.push(d);
+      var dot = document.createElement('span');
+      dot.style.cssText = i === 0
+        ? 'width:22px;height:8px;border-radius:4px;background:#E8620A;cursor:pointer;transition:all .3s'
+        : 'width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.3);cursor:pointer;transition:all .3s';
+      dot.onclick = function() { goTo(i); };
+      dotsEl.appendChild(dot);
+      dots.push(dot);
+    });
+    var self = this;
+    function goTo(n) {
+      els[cur].style.opacity = '0';
+      dots[cur].style.cssText = 'width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.3);cursor:pointer;transition:all .3s';
+      cur = n;
+      els[cur].style.opacity = '1';
+      dots[cur].style.cssText = 'width:22px;height:8px;border-radius:4px;background:#E8620A;cursor:pointer;transition:all .3s';
+    }
+    self._nextFn = function() { goTo((cur + 1) % slides.length); };
+    var ms = ((this.props.slideInterval || 4) * 1000);
+    self._timer = setInterval(self._nextFn, ms);
+    var sx = 0;
+    var hero = wrap.closest('section') || wrap.parentElement;
+    hero.addEventListener('touchstart', function(e) { sx = e.touches[0].clientX; }, {passive: true});
+    hero.addEventListener('touchend', function(e) {
+      var dx = e.changedTouches[0].clientX - sx;
+      if (Math.abs(dx) > 40) {
+        clearInterval(self._timer);
+        goTo(dx < 0 ? (cur + 1) % slides.length : (cur - 1 + slides.length) % slides.length);
+        self._timer = setInterval(self._nextFn, ms);
+      }
+    }, {passive: true});
+  }
+  _setupScroll() {
+    var btn = document.getElementById('floatWa');
+    if (!btn) return;
+    this._scrollFn = function() {
+      btn.style.display = window.scrollY > 600 ? 'flex' : 'none';
+    };
+    window.addEventListener('scroll', this._scrollFn, {passive: true});
+  }
+  renderVals() {
+    return {
+      showRoadStripe: this.props.showRoadStripe !== false
+    };
+  }
+}
+
+</script>
+</body>
+</html>
