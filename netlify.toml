@@ -1,0 +1,7 @@
+[build]
+  publish = "."
+
+[[redirects]]
+  from = "/Rafael Giovannini.dc.html"
+  to = "/"
+  status = 301
